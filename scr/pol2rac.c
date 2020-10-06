@@ -1,10 +1,10 @@
 #include "pol2rac.h"
 /***********************************************************
-*                   Funcines locales                       *
+*                   Funciones locales                       *
 ***********************************************************/
 
 /*Resuelve el polinomio de segundo grado con coeficientes
-  racionales. En caso de no tener solución se coloca la
+  racionales. En caso de no tener soluciï¿½n se coloca la
   variable estado con el valor correspondiente*/
 void resuelve(ecseg* e){
   return;
@@ -13,16 +13,16 @@ void resuelve(ecseg* e){
 /*                      Funciones                         */
 /**********************************************************/
 
-/**************- Inicializa una ecuación -*****************/
-/* Inicializa una ecuación
+/**************- Inicializa una ecuaciï¿½n -*****************/
+/* Inicializa una ecuaciï¿½n
 Recibe un apuntador de tipo ecseg y tres coeficientes racio-
   nales.
 Regresa:
-  OK, en caso de inicializar la ecuación.
+  OK, en caso de inicializar la ecuaciï¿½n.
   APINV, si recibe un apuntador nulo
-  DENCER, en casode recibir un cero como el tercer parámetro
+  DENCER, en casode recibir un cero como el tercer parï¿½metro
 Observaciones:
-  Siempre debe utilizar esta función para inicializar las
+  Siempre debe utilizar esta funciï¿½n para inicializar las
   ecuaciones con coeficientes racionales. No modificar 
   directamente los campos de la estructura.
 */
@@ -36,19 +36,19 @@ int ini_ec2r(ecseg* e, const racional* a, const racional* b, const racional* c){
   return OK;
 }
 
-/* Convierte una ecuación a cadena
+/* Convierte una ecuaciï¿½n a cadena
 Recibe Un apuntador a cadena de caracteres que debe tener 
-  espacio suficiente para almacerna la ecuación.
+  espacio suficiente para almacerna la ecuaciï¿½n.
 Regresa:
   Un apuntador a la misma cadena que recibe. En caso de te-
   ner un error regresa alguna de las siguientes cadenas:
   "NULL":   Recibe un apuntador nulo
   En caso contrario regresa una cadena que represetnta la 
-  ecuación de segundo grado. Por ejemplo
+  ecuaciï¿½n de segundo grado. Por ejemplo
   (-3/4)x^2+(-5/3)x+(3)=0
 Observaciones:
-  Imprime la ecuación tal y como está no hace verificaciones
-  No verifica que el tamaño del arreglo destino ni el auxi-
+  Imprime la ecuaciï¿½n tal y como estï¿½ no hace verificaciones
+  No verifica que el tamaï¿½o del arreglo destino ni el auxi-
   liar, que utiliza de racional.h
 */
 char* tostr_ec2r(char* sal ,const ecseg* e){
@@ -68,4 +68,22 @@ char* tostr_ec2r(char* sal ,const ecseg* e){
 	 strcat(sal,"=0");
    }
    return sal;
+}
+
+/*AquÃ­ se hace la magia*/
+void calcularRaices(ecseg* ecuacion)
+{
+
+  racional* determinante;
+
+  determinante = (pow((double)(ecuacion->b), 2));
+  
+  if(ESCERO())
+  {
+    printf("Esta no es una ecuacion de segundo grado. ");
+  }
+  else if(ESCERO(ecuacion.a.den))
+  {
+    printf("No es posible dividir entre cero. ");
+  }
 }
